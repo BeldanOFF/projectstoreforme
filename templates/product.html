@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/product_style.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <header class="headers">
+        <nav>
+            <a href="/" >Главная</a>
+            <a href="" >Продукты</a>
+            <a href="/info" >О нас</a>
+        </nav>
+        <nav>
+            <a href="/userlogin" id="login">Вход</a>
+        </nav>
+    </header>
+
+    {% block product %}
+    <div class="osn">
+        <div class="Oimage">
+            <img src="/static/products_img/{{ product.image }}" alt="">
+        </div>
+        </div>
+        <div class="navigate">
+            <h2>{{ product.name }}</h2>
+            <h1>{{ product.price }}Р</h1>
+            <h3>Размеры:</h3>
+            <div class="sizes">
+                <button>XXL</button>
+                <button>XXL</button>
+                <button>XXL</button>
+                <button>XXL</button>
+                <button>XXL</button>
+                <button>XXL</button>
+                <button>XXL</button>
+                <button>XXL</button>
+                <button>XXL</button>
+                <button>XXL</button>
+                <button>XXL</button>
+                <button>XXL</button>
+            </div>
+            <div class="pays">
+                <button id="adres">Адрес Доствки</button>
+                <button id="config-pay">Способ оплаты</button>
+                <button id="pay">Купить</button>
+
+            </div>
+        </div>
+        <div class="description">
+            <h1>О товаре</h1>
+            <h2>{{ product.description }}</h2>
+        </div>
+    </div>
+    {% endblock %}
+
+</body>
+</html>

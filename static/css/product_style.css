@@ -1,0 +1,252 @@
+/*Шрифты*/
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800&display=swap');
+
+
+/*ОСНОВА*/
+
+a {
+    text-decoration: none;
+    color: white;
+
+}
+
+.nodrag{
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#per {
+    left: 0px;
+    width: 100%;
+    position: absolute;
+    top: 80%
+}
+
+#logo {
+    position: absolute;
+    width: 38%;
+    top: 22%;
+    right: 10%;
+}
+
+html {
+    font-family: 'Jost SemiBold', sans-serif;
+    font-size: 18pt;
+    margin-right: 10%;
+    background-color: black;
+}
+
+body {
+    background-color: black;
+    color: white;
+    margin-left: 0;
+}
+
+#login {
+    display: flex;
+    justify-content: space-between;
+    color: #72B01D;
+    margin-left: 80%;
+
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5%;
+}
+
+nav:last-of-type {
+    margin-left: auto;
+  }
+
+.headers a {
+    text-decoration: none;
+    color: white;
+    margin-left: 150px;
+}
+
+.osn {
+    background-color: rgb(241, 241, 241);
+    position: absolute;
+    top: 18%;
+    left: 0;
+    width: 100%;
+    height: 110%;
+}
+
+.Oimage {
+    background-color: rgb(219, 219, 219);
+    position: absolute;
+    top: 10%;
+    left: 15%;
+    width: 35%;
+    height: 58%;
+
+    border-radius: 15px;
+}
+
+.Oimage img{
+    width: 102%;
+    border-radius: 15px;
+}
+
+/* .Vimages {
+    position: absolute;
+    top: 10%;
+    left: 3%;
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+.Vimage {
+    margin-bottom: 1%;
+    margin-top: 0px;
+    background-color: rgb(219, 219, 219);
+    position: relative;
+    top: 10%;
+    left: 10%;
+    width: 6%;
+    height: 10%;
+    border-radius: 10px;
+}
+.down {
+    position: absolute;
+    width: 2%;
+    top: 71vh;
+    left: 25.5vh;
+}
+.up {
+    position: absolute;
+    width: 2%;
+    left: 25.5vh;
+    top: 11.2vh;
+} */
+
+.navigate {
+    position: absolute;
+    top: 27%;
+    right: 16%;
+    width: 600px;
+}
+
+.navigate h2 {
+    font-family: 'Jost Regular', sans-serif;
+    color: black;
+    font-size: 25pt;
+    right: 10%;
+    margin-bottom: 7%;
+}
+
+.navigate h1 {
+    font-family: 'Jost Regular', sans-serif;
+    color: black;
+    font-size: 40pt;
+    right: 10%;
+    margin-bottom: 7%;
+}
+
+.navigate h3 {
+    font-family: 'Jost Regular', sans-serif;
+    color: #646464;
+    font-size: 13pt;
+    right: 10%;
+    margin-bottom: 1%;
+}
+
+.sizes {
+    column-count: 3;
+    column-width: calc(100% / 3);
+}
+
+.sizes button{
+    font-family: 'Jost Semibold', sans-serif;
+    color: black;
+    font-size: 10pt;
+    right: 10%;
+    margin-bottom: 10%;
+    background-color: #D9D9D9;
+    border: #C2C2C2 solid 1px;
+    text-align: center;
+    border-radius: 8px;
+    width: 110%;
+    height: 4vh;
+    line-height: 4vh;
+    margin-bottom: 5px;
+}
+
+.sizes button:hover{
+    border: #6a9e3f  solid 2px;
+}
+
+.pays {
+    margin-top: 4%;
+    background-color: white;
+    width: 103%;
+    border-radius: 15px;
+    height: 19vh;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 15px;
+}
+
+.pays #pay{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#pay {
+    font-family: 'Jost Medium', sans-serif;
+    font-size: 12pt;
+    background: black;
+    color: #A1E06F;
+    width: 90%;
+    height: 5vh;
+    line-height: 5  vh;
+    border-radius: 10px;
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.pays button {
+    font-family: 'Jost Medium', sans-serif;
+    font-size: 12pt;
+    color: black;
+    background-color: #A1E06F;
+    border: 0;
+    border-radius: 10px;
+    margin-left: 5%;
+    width: 42%;
+    margin-top: 5%;
+    height: 5vh;
+    line-height: 4.5vh;
+}
+
+.description {
+    position: absolute;
+    top: 95%;
+    left: 15%;
+    width: 70%;
+}
+
+.description h1 {
+    font-family: 'Jost SemiBold', sans-serif;
+    font-size: 22pt;
+    color: black;
+}
+
+.description h2 {
+    font-family: 'Jost Light', sans-serif;
+    font-size: 14pt;
+    color: black;
+}

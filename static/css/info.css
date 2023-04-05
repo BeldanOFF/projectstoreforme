@@ -1,0 +1,103 @@
+/*Шрифты*/
+
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800&display=swap');
+
+
+/*ОСНОВА*/
+
+a {
+    text-decoration: none;
+    color: white;
+
+}
+
+.nodrag{
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#per {
+    left: 0px;
+    width: 100%;
+    position: absolute;
+    top: 80%
+}
+
+#logo {
+    position: absolute;
+    width: 38%;
+    top: 22%;
+    right: 10%;
+}
+
+html {
+    font-family: 'Jost SemiBold', sans-serif;
+    font-size: 18pt;
+    margin-right: 10%;
+    background-image: url("../img/2.png");
+}
+
+body {
+    background-image: url("../img/2.png");
+    color: white;
+}
+
+#login {
+    display: flex;
+    justify-content: space-between;
+    color: #72B01D;
+    margin-left: 80%;
+
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5%;
+}
+
+nav:last-of-type {
+    margin-left: auto;
+  }
+
+.headers a {
+    text-decoration: none;
+    color: white;
+    margin-left: 150px;
+}
+
+.about_us {
+    position: absolute;
+    top: 20%;
+    left: 8.5%;
+    color: rgb(255, 255, 255);
+    width: 80%;
+    height: 40vh;
+    margin-top: 0px;
+    margin-bottom: 2%;
+}
+
+.about_us h1 {
+    color: rgb(255, 255, 255);
+    font-family: 'Jost SemiBold', sans-serif;
+    border-bottom: 0px;
+    border-top: 4%px;
+
+}
+
+.about_us h2 {
+    color: rgb(255, 255, 255);
+    font-family: 'Jost Light', sans-serif;
+    font-size: 10pt;
+    margin-bottom: 2%;
+    border-top: 0;
+
+}
