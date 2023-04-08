@@ -21,12 +21,14 @@
     </header>
 
     <div class="login">
+        <h1 class="item">Войти</h1>
         <form method="POST" action="{{ url_for('adminlogin') }}">
-        <h4>Имя</h4>
-        <input type="text" id="username" name="username">
-        <h4>Пароль</h4>
-        <input type="password" id="password" name="password">
-        <input type="submit" value="Login">
+            <h4>Имя</h4>
+            <input type="text" id="username" name="username">
+            <h4>Пароль</h4>
+            <input type="password" id="password" name="password">
+            <input type="submit" value="Login">
+        </form>
     </div>
 
 </body>

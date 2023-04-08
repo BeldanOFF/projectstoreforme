@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="static/css/catalog.css">
+    <link rel="stylesheet" href="../static/css/catalog.css">
     <title>Каталог</title>
 </head>
 <body>
@@ -24,19 +24,19 @@
         <div class="filters">
             <div class="param1">
                 <h1>Коллекции</h1>
-                <form method="GET" action="/catalog-tags">
+                <form method="GET" action="/catalog/{{ catalog_id }}">
                     <div class="checkboxs">
                         {% for el in collection %}
                             <label><input type="checkbox" name="collection" value="{{ el.id }}"
                                           {% if el.id|string in collections %}checked{% endif %}>{{ el.title }}</label>
                         {% endfor %}
                     </div>
-                    <button type="submit">Фильтр</button>
+                    <button id="submit" type="submit">Фильтр</button>
                 </form>
             </div>
 
-            <form action="/catalog-tags">
-                <button>Сбросить</button>
+            <form action="/catalog/{{ catalog_id }}">
+                <button id="reset">Сбросить</button>
             </form>
         </div>
         <div class="goods">
@@ -51,6 +51,8 @@
             {% endfor %}
         </div>
     </div>
+
+
 
 </body>
 </html>

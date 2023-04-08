@@ -41,11 +41,11 @@ html {
     font-family: 'Jost SemiBold', sans-serif;
     font-size: 18pt;
     margin-right: 10%;
-    background-image: url("static/img/2.png");
+    background-image: url("../img/2.png");
 }
 
 body {
-    background-image: url("static/img/2.png");
+    background-image: url("../img/2.png");
     color: white;
 }
 
@@ -86,6 +86,7 @@ nav:last-of-type {
     justify-content: flex-start;
     align-items: center;
 }
+
 
 .login h1{
     font-family: 'Jost ExtraLight', sans-serif;
@@ -146,4 +147,10 @@ nav:last-of-type {
     justify-content: left;
     margin-bottom: 10px;
     margin-top: 10px;
+}
+
+.login form {
+    width: 100%;
+    margin-left: 21.5%;
+    height 100%
 }

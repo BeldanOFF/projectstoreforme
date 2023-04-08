@@ -21,12 +21,14 @@
     </header>
 
     <div class="login">
+        <h1 class="item">Войти</h1>
         <form method="POST" action="{{ url_for('userlogin') }}">
-        <h4>Имя</h4>
-        <input type="text" id="username" name="username">
-        <h4>Пароль</h4>
-        <input type="password" id="password" name="password">
-        <button>Войти</button>
+            <h4>Почта</h4>
+            <input type="text" id="username" name="username">
+            <h4>Пароль</h4>
+            <input type="text" id="password" name="password">
+            <button>Войти</button>
+        </form>
         <h5>Нету? <a href="/register">создай!</a></h5>
     </div>
 

@@ -243,15 +243,19 @@ def catalog():
         catalog = Catalog.query.order_by(Catalog.title).all()
     return render_template('catalog odej.html', collections=collections, catalog=catalog)
 
-@app.route('/catalog-tags')
-def catalog_tag():
+
+@app.route('/catalog/<int:catalog_id>')
+def catalog_tag(catalog_id):
+    catalogs = Catalog.query.get(catalog_id)
+    if catalogs is None:
+        abort(404)
     collections = request.args.getlist('collection')
     collection = Collections.query.order_by(Collections.id).all()
     if not collections:
-        product = Product.query.order_by(Product.name).all()
+        product = Product.query.filter(Product.catalog_id == catalog_id).order_by(Product.name).all()
     else:
-        product = Product.query.filter(Product.collection_id.in_(collections)).all()
-    return render_template('catalog.html', product=product, collection=collection, collections=collections)
+        product = Product.query.filter(Product.catalog_id == catalog_id, Product.collection_id.in_(collections)).all()
+    return render_template('catalog.html', product=product, collection=collection, collections=collections, catalog_id=catalog_id)
 
 
 
