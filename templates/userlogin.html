@@ -12,8 +12,8 @@
     <header class="headers">
         <nav>
             <a href="/" >Главная</a>
-            <a href="" >Продукты</a>
-            <a href="/" >О нас</a>
+            <a href="/catalog" >Продукты</a>
+            <a href="/info" >О нас</a>
         </nav>
         <nav>
             <a href="" id="login">Вход</a>
@@ -31,6 +31,23 @@
         </form>
         <h5>Нету? <a href="/register">создай!</a></h5>
     </div>
+
+    <div id="notification-{{ color }}" class="hidden">{{ notification }}</div>
+
+    <script>
+      // Находим уведомление по ID
+      const notification = document.getElementById("notification-{{ color }}");
+
+      // Показываем уведомление, если оно есть
+      if (notification.innerHTML) {
+        notification.classList.remove("hidden");
+
+        // Скрываем уведомление через 5 секунд
+        setTimeout(function() {
+          notification.classList.add("hidden");
+        }, 10000);
+      }
+    </script>
 
 </body>
 </html>

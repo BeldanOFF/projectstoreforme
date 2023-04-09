@@ -135,20 +135,25 @@ def register():
 
         # Проверяем, что все поля заполнены
         if not name or not email or not password:
-            return 'Заполните все поля'
+            notification = 'Заполните все поля'
+            return render_template('register.html', notification=notification, color='red')
 
         # Проверяем, что пользователь с таким email уже не зарегистрирован
-        if User.query.filter_by(email=email).first():
-            return 'Пользователь с таким email уже зарегистрирован'
+        elif User.query.filter_by(email=email).first():
+            notification = 'Пользователь с таким email уже зарегистрирован'
+            return render_template('register.html', notification=notification, color='red')
 
-        # Создаем нового пользователя
-        user = User(name=name, email=email, password=password_hash)
+        else:
+            # Создаем нового пользователя
+            user = User(name=name, email=email, password=password_hash)
 
-        # Добавляем пользователя в базу данных
-        db.session.add(user)
-        db.session.commit()
+            # Добавляем пользователя в базу данных
+            db.session.add(user)
+            db.session.commit()
 
-        return 'Регистрация прошла успешно!'
+            notification = 'Вы успешно зарегистрировались'
+
+            return render_template('register.html', notification=notification, color='green')
     else:
         return render_template('register.html')
 
@@ -177,17 +182,19 @@ def userlogin():
 
         if not user or not user.password or not user.password.startswith('pbkdf2:sha256:'):
             # Invalid email or password hash format
-            flash('Invalid email or password')
-            return redirect(url_for('userlogin'))
+            notification = 'Не правильный email или пароль'
+            return render_template('userlogin.html', notification=notification, color='red')
 
-        if check_password_hash(user.password, password):
+        elif check_password_hash(user.password, password):
             # Password is correct, login the user
-            flash('Logged in successfully.')
-            return redirect(url_for('index'))
+            notification = 'Вы вошли'
+            return render_template('userlogin.html', notification=notification, color='green')
         else:
             # Password is incorrect
-            flash('Invalid email or password')
-            return redirect(url_for('userlogin'))
+            notification = 'Не правильный email или пароль'
+            return render_template('userlogin.html', notification=notification, color='red')
+
+
     else:
         return render_template('userlogin.html')
 

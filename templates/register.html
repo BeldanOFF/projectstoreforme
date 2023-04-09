@@ -12,7 +12,7 @@
     <header class="headers">
         <nav>
             <a href="/" >Главная</a>
-            <a href="" >Продукты</a>
+            <a href="/catalog" >Продукты</a>
             <a href="/info" >О нас</a>
         </nav>
         <nav>
@@ -29,10 +29,26 @@
             <input type="text" type="email" id="email" name="email" required>
             <h4>Пароль</h4>
             <input type="text" type="password" id="password" name="password" require>
-            <button>Войти</button>
+            <button id="notification-button">Войти</button>
         </form>
         <h5>Есть? <a href="/userlogin">войди!</a></h5>
     </div>
 
+    <div id="notification-{{ color }}" class="hidden">{{ notification }}</div>
+
+    <script>
+      // Находим уведомление по ID
+      const notification = document.getElementById("notification-{{ color }}");
+
+      // Показываем уведомление, если оно есть
+      if (notification.innerHTML) {
+        notification.classList.remove("hidden");
+
+        // Скрываем уведомление через 5 секунд
+        setTimeout(function() {
+          notification.classList.add("hidden");
+        }, 10000);
+      }
+    </script>
 </body>
 </html>

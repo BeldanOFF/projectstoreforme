@@ -70,7 +70,7 @@ nav:last-of-type {
 
 .headers a {
     text-decoration: none;
-    color: #72B01D;
+    color: white;
     margin-left: 150px;
 }
 
@@ -123,10 +123,11 @@ nav:last-of-type {
     border: 1px rgb(201, 199, 199) solid;
     background-color: #e9e9e9;
     border-radius: 10px;
-    width: 78%;
+    width: 76%;
     height: 35px;
     margin-top: 0;
     margin-bottom: 10px;
+    padding-left: 10px;
 }
 
 .login button{
@@ -153,4 +154,50 @@ nav:last-of-type {
     width: 100%;
     margin-left: 21.5%;
     height 100%
+}
+
+#notification-green {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  z-index: 1;
+  animation: fade-out 10s ease-in-out forwards;
+  background-color: green;
+}
+
+#notification-red {
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  z-index: 1;
+  animation: fade-out 10s ease-in-out forwards;
+  background-color: red;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+#notification.show {
+  display: block;
+  animation: none;
+}
+
+#notification.hide {
+  display: none;
+}
+
+.hidden {
+  display: none;
 }
