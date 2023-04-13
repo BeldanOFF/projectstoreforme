@@ -5,6 +5,7 @@ from flask import Flask, render_template, request, redirect, url_for, session, a
 from flask_admin import Admin, form
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.form import Select2Field
+from flask_admin.model import InlineFormAdmin
 from flask_login import LoginManager, login_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
@@ -31,10 +32,6 @@ class Collections(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     products = db.relationship('Product', backref='collections', lazy=True)
-
-class Collection_tov(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
 
 
 class Product(db.Model):
@@ -137,8 +134,6 @@ class ProductAdminModel(StorageAdminModel):
         return form
 
 
-
-
 class UserView(ModelView):
     form_columns = ('name', 'email')
 
@@ -148,7 +143,7 @@ class CollectionView(ModelView):
 
 
 admin = Admin(app, name='Online Store Admin Panel')
-admin.add_view(StorageAdminModel(Product, db.session))
+admin.add_view(ProductAdminModel(Product, db.session))
 admin.add_view(StorageAdminModel(Catalog, db.session))
 admin.add_view(CollectionView(Collections, db.session))
 admin.add_view(UserView(User, db.session))
@@ -179,25 +174,20 @@ def register():
 
         # Проверяем, что все поля заполнены
         if not name or not email or not password:
-            notification = 'Заполните все поля'
-            return render_template('register.html', notification=notification, color='red')
+            return 'Заполните все поля'
 
         # Проверяем, что пользователь с таким email уже не зарегистрирован
-        elif User.query.filter_by(email=email).first():
-            notification = 'Пользователь с таким email уже зарегистрирован'
-            return render_template('register.html', notification=notification, color='red')
+        if User.query.filter_by(email=email).first():
+            return 'Пользователь с таким email уже зарегистрирован'
 
-        else:
-            # Создаем нового пользователя
-            user = User(name=name, email=email, password=password_hash)
+        # Создаем нового пользователя
+        user = User(name=name, email=email, password=password_hash)
 
-            # Добавляем пользователя в базу данных
-            db.session.add(user)
-            db.session.commit()
+        # Добавляем пользователя в базу данных
+        db.session.add(user)
+        db.session.commit()
 
-            notification = 'Вы успешно зарегистрировались'
-
-            return render_template('register.html', notification=notification, color='green')
+        return 'Регистрация прошла успешно!'
     else:
         return render_template('register.html')
 
@@ -226,19 +216,17 @@ def userlogin():
 
         if not user or not user.password or not user.password.startswith('pbkdf2:sha256:'):
             # Invalid email or password hash format
-            notification = 'Не правильный email или пароль'
-            return render_template('userlogin.html', notification=notification, color='red')
+            flash('Invalid email or password')
+            return redirect(url_for('userlogin'))
 
-        elif check_password_hash(user.password, password):
+        if check_password_hash(user.password, password):
             # Password is correct, login the user
-            notification = 'Вы вошли'
-            return render_template('userlogin.html', notification=notification, color='green')
+            flash('Logged in successfully.')
+            return redirect(url_for('index'))
         else:
             # Password is incorrect
-            notification = 'Не правильный email или пароль'
-            return render_template('userlogin.html', notification=notification, color='red')
-
-
+            flash('Invalid email or password')
+            return redirect(url_for('userlogin'))
     else:
         return render_template('userlogin.html')
 
@@ -282,6 +270,7 @@ def admin_login_required(f):
 @admin_login_required
 def admin():
     return redirect(url_for('admin.index'))
+
 
 
 @app.route('/catalog')
