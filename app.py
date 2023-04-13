@@ -4,6 +4,7 @@ import random
 from flask import Flask, render_template, request, redirect, url_for, session, abort, flash
 from flask_admin import Admin, form
 from flask_admin.contrib.sqla import ModelView
+from flask_admin.form import Select2Field
 from flask_login import LoginManager, login_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
@@ -93,6 +94,49 @@ class StorageAdminModel(ModelView):
         return self._change_path_data(
             super(StorageAdminModel, self).create_form(obj)
         )
+
+
+class ProductAdminModel(StorageAdminModel):
+    form_extra_fields = {
+        'catalog_id': Select2Field('Catalog', choices=[]),
+        'collection_id': Select2Field('Collection', choices=[]),
+        'file': form.FileUploadField('file')
+    }
+
+    def _change_path_data(self, _form):
+        try:
+            storage_file = _form.file.data
+
+            if storage_file is not None:
+                hash = random.getrandbits(128)
+                ext = storage_file.filename.split('.')[-1]
+                path = '%s.%s' % (hash, ext)
+
+                storage_file.save(
+                    os.path.join(app.config['STORAGE'], path)
+                )
+
+                _form.image.data = path
+
+                del _form.file
+
+        except Exception as ex:
+            pass
+
+        return _form
+
+    def create_form(self, obj=None):
+        form = super(ProductAdminModel, self).create_form(obj=obj)
+        form.collection_id.choices = [(c.id, c.title) for c in Collections.query.all()]
+        form.catalog_id.choices = [(c.id, c.title) for c in Catalog.query.all()]
+        return form
+
+    def edit_form(self, obj=None):
+        form = super(StorageAdminModel, self).edit_form(obj=obj)
+        form.collection_id.choices = [(c.id, c.title) for c in Collections.query.all()]
+        return form
+
+
 
 
 class UserView(ModelView):
