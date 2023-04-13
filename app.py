@@ -197,12 +197,13 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-@app.route('/product/<int:product_id>')
-def product_page(product_id):
+@app.route('/catalog/<int:catalog_id>/product/<int:product_id>')
+def product_page(catalog_id, product_id):
+    catalogs = catalog_id
     product = Product.query.get(product_id)
     if product is None:
         abort(404)
-    return render_template('product.html', product=product)
+    return render_template('product.html', product=product, catalog_id=catalogs)
 
 
 @app.route('/userlogin', methods=['GET', 'POST'])

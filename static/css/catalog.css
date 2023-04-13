@@ -82,7 +82,8 @@ nav:last-of-type {
     padding-top: 2%;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px;
-    height: 20%;
+    height: auto;
+    padding-bottom: 2%;
 }
 
 .checkboxs{
@@ -190,5 +191,12 @@ nav:last-of-type {
     font-family: 'Jost Regular', sans-serif;
     font-size: 10pt;
     font-size: 15pt;
+}
+
+@media (max-width: 1650px) {
+    .filters {
+        height: auto;
+        padding-bottom: 2%;
+    }
 }
 
