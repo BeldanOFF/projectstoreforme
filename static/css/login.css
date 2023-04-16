@@ -41,7 +41,7 @@ html {
     font-family: 'Jost SemiBold', sans-serif;
     font-size: 18pt;
     margin-right: 10%;
-    background-image: url("../img/2.png");
+    background-image: url("../img/2.png") no-repeat;
 }
 
 body {
@@ -50,10 +50,9 @@ body {
 }
 
 #login {
-    display: flex;
-    justify-content: space-between;
     color: #72B01D;
-    margin-left: 80%;
+    text-align: right;
+    margin-left: 20%;
 
 }
 
@@ -69,22 +68,28 @@ nav:last-of-type {
   }
 
 .headers a {
+    font-family: 'Jost SemiBold', sans-serif;
     text-decoration: none;
     color: white;
     margin-left: 150px;
 }
 
 .login {
+    position: absolute;
     border-radius: 10px;
-    margin-top: 12%;
-    margin-left: 40%;
-    width: 50vh;
-    height: 50vh;
+    top: 200px;
+    left: 22%;
+    width: 55%;
+    min-width: 10px;
+    height: auto;
+    padding-right:10px;
+    padding-bottom:5%;
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin-right: 10%;
 }
 
 
@@ -123,7 +128,7 @@ nav:last-of-type {
     border: 1px rgb(201, 199, 199) solid;
     background-color: #e9e9e9;
     border-radius: 10px;
-    width: 76%;
+    width: calc(80% - 10px);
     height: 35px;
     margin-top: 0;
     margin-bottom: 10px;
@@ -132,7 +137,7 @@ nav:last-of-type {
 
 .login button{
     font-family: 'Jost Light', sans-serif;
-    width: 79%;
+    width: 80%;
     height: 40px;
     border-radius: 10px;
     border: none;
@@ -176,7 +181,7 @@ nav:last-of-type {
   padding: 10px;
   font-size: 16px;
   z-index: 1;
-  animation: fade-out 10s ease-in-out forwards;
+  animation: fade-out 5s ease-in-out forwards;
   background-color: red;
 }
 
@@ -200,4 +205,98 @@ nav:last-of-type {
 
 .hidden {
   display: none;
+}
+
+@media (max-width: 1850px) {
+    .login input {
+        height: 28px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+
+    .login button{
+     height: 32px
+
+    }
+
+    .login h4 {
+     font-size: 10pt;
+     margin-top: 0px;
+     margin-bottom: 0px;
+    }
+}
+
+.login button[type=submit] {
+    margin-bottom: 20px
+}
+
+@media (max-width: 1000px) {
+    .headers a {
+    font-size: 16pt;
+    margin-left: 120px;
+    }
+
+
+}
+
+@media (max-width: 780px) {
+    .headers a {
+    font-size: 14pt;
+    margin-left: 85px;
+    }
+
+
+}
+
+@media (max-width: 600px) {
+    .headers a {
+    font-size: 12pt;
+    margin-left: 68px;
+    }
+
+
+}
+
+@media (max-width: 500px) {
+    .headers a {
+    font-size: 10pt;
+    margin-left: 50px;
+    }
+
+    .login h1 {
+        font-size: 12pt;
+    }
+
+    .login h4 {
+        font-size: 8pt;
+    }
+
+    .login h5 {
+        font-size: 9pt;
+    }
+
+    .login input {
+        font-size: 9pt;
+    }
+
+    .login button {
+        font-size: 8pt;
+    }
+
+}
+
+@media (max-width: 460px) {
+
+}
+
+@media (max-width: 410px) {
+
+    .headers a {
+    font-size: 8pt;
+    margin-left: 40px;
+    }
+
+    .login h1 {
+        font-size: 10pt;
+    }
 }

@@ -12,7 +12,7 @@
     <header class="headers">
         <nav>
             <a href="/" >Главная</a>
-            <a href="" >Продукты</a>
+            <a href="/catalog" >Каталог</a>
             <a href="/info" >О нас</a>
         </nav>
         <nav>
@@ -22,71 +22,73 @@
 
     {% block product %}
     <div class="osn">
-        <div class="Oimage">
-            <img src="/static/products_img/{{ product.image }}" alt="">
-        </div>
-        </div>
-        <div class="navigate">
-            <h2>{{ product.name }}</h2>
-            <h1>{{ product.price }}Р</h1>
-            <h3>Размеры:</h3>
-            <div class="sizes">
-                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
-                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
-                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
-                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
-                                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
-                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
-                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
-                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
-                                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
-                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
-                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
-                <label>
-                    <input type="radio" name="size">
-                    <span>XXL</span>
-                </label>
+        <div class="mains">
+            <div class="Oimage">
+                <img src="/static/products_img/{{ product.image }}" alt="">
             </div>
-            <div class="pays">
-                <button id="adres">Адрес Доствки</button>
-                <button id="config-pay">Способ оплаты</button>
-                <button id="pay">Купить</button>
+            <div class="navigate">
+                <h2>{{ product.name }}</h2>
+                <h1>{{ product.price }}Р</h1>
+                <h3>Размеры:</h3>
+                <div class="sizes">
+                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="size">
+                        <span>XXL</span>
+                    </label>
+                </div>
+                <div class="pays">
+                    <button id="adres">Адрес Доствки</button>
+                    <button id="config-pay">Способ оплаты</button>
+                    <button id="pay">Купить</button>
 
+                </div>
             </div>
         </div>
+
         <div class="description">
             <h1>О товаре</h1>
             <h2>{{ product.description }}</h2>

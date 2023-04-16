@@ -23,6 +23,20 @@ a {
     user-select: none;
 }
 
+#per {
+    left: 0px;
+    width: 100%;
+    position: absolute;
+    top: 80%
+}
+
+#logo {
+    position: absolute;
+    width: 38%;
+    top: 22%;
+    right: 10%;
+}
+
 html {
     font-family: 'Jost SemiBold', sans-serif;
     font-size: 18pt;
@@ -33,14 +47,12 @@ html {
 body {
     background-color: black;
     color: white;
-    margin-left: 0;
 }
 
 #login {
-    display: flex;
-    justify-content: space-between;
     color: #72B01D;
-    margin-left: 80%;
+    text-align: right;
+    margin-left: 20%;
 
 }
 
@@ -49,6 +61,7 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-top: 5%;
+    width: 100%;
 }
 
 nav:last-of-type {
@@ -56,6 +69,7 @@ nav:last-of-type {
   }
 
 .headers a {
+    font-family: 'Jost SemiBold', sans-serif;
     text-decoration: none;
     color: white;
     margin-left: 150px;
@@ -82,12 +96,7 @@ nav:last-of-type {
     padding-top: 2%;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 15px;
-    height: 20%;
-}
-
-.checkboxs{
-    display: flex;
-    flex-direction: column;
+    padding-bottom: 2%;
 }
 
 .filters h1 {
@@ -111,7 +120,7 @@ nav:last-of-type {
 .filters input {
     margin-bottom: 0px;
     margin-top: 0px;
-    margin-left: 25%;
+    margin-left: auto;
 }
 
 
@@ -121,7 +130,7 @@ nav:last-of-type {
     position: absolute;
     left: 23%;
     top: 5%;
-    width: 80%;
+    width: 77%;
 
 }
 
@@ -130,9 +139,9 @@ nav:last-of-type {
     border-radius: 10px;
     margin-left: 1%;
     margin-bottom: 1%;
-    flex-basis: calc(100% / 5);
-    max-width: calc(100% / 5);
     box-sizing: border-box;
+    flex-basis: calc(100% / 4);
+    max-width: calc(100% / 4.7);
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
 }
 
@@ -186,9 +195,416 @@ nav:last-of-type {
     border: None;
 }
 
-.checkboxs label{
-    font-family: 'Jost Regular', sans-serif;
-    font-size: 10pt;
-    font-size: 15pt;
+form {
+    width: 100%;
 }
 
+.checkboxs{
+    width: 100%;
+    display: grid;
+    grid-template-columns: center;
+    margin-left: -20%
+
+}
+
+.checktext{
+    width: 100%;
+    display: grid;
+    text-align: center;
+
+}
+
+.checkboxs label{
+    font-family: 'Jost Regular', sans-serif;
+    font-size: 15pt;
+    display: inline-flex;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1px solid black;
+  border-radius: 3px;
+  outline: none;
+  transition: background-color 0.3s ease-in-out;
+  background-color: #FFF;
+  position: relative; /* Добавляем для позиционирования ::before */
+  flex-shrink: 0;
+  margin-left: 50%;
+}
+
+input[type="checkbox"]:checked {
+  background-color: green;
+  border-color: green; /* Добавляем зеленую обводку */
+  background-image: url('/static/svg/123.svg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: center;
+}
+
+input[type="checkbox"]::before {
+  top: 50%; /* Центрируем вертикально */
+  left: 50%; /* Центрируем горизонтально */
+  transform: translate(-50%, -50%); /* Центрируем точно в центре */
+  color: white; /* Задаем цвет крестика */
+  font-size: 19px; /* Задаем размер шрифта */
+  font-weight: bold; /* Задаем жирный шрифт */
+  opacity: 0; /* Скрываем крестик по умолчанию */
+}
+
+input[type="checkbox"]:checked::before {
+  opacity: 1
+}
+
+@media (max-width: 1500px) {
+
+    .goods h1 {
+        font-size: 15pt;
+    }
+
+    .goods h2 {
+        font-size: 13pt;
+    }
+
+    .filters h1 {
+    font-size: 23pt;
+    }
+
+    .filters a {
+    font-size: 12pt;
+    }
+
+    .osn {
+        top: 15%;
+    }
+
+    input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      border-radius: 3px;
+    }
+
+    .checkboxs {
+        margin-left: -28%;
+    }
+
+    .checkboxs label{
+        font-size: 16pt;
+    }
+
+}
+
+@media (max-width: 1200px) {
+
+    .osn {
+        top: 13%;
+    }
+
+
+    .filters h1 {
+    font-size: 18pt;
+    }
+
+                input[type="checkbox"] {
+      width: 12px;
+      height: 12px;
+      border-radius: 2.5px;
+    }
+
+    .checkboxs {
+        margin-left: -32%;
+    }
+
+    .checkboxs label{
+        font-size: 14pt;
+    }
+}
+
+
+@media (max-width: 1000px) {
+
+    .goods h1 {
+        font-size: 10pt;
+    }
+
+    .goods h2 {
+        font-size: 12pt;
+    }
+
+    .filters h1 {
+    font-size: 16pt;
+    }
+
+    .filters a {
+    font-size: 10pt;
+    }
+
+    .headers a {
+    font-size: 16pt;
+    margin-left: 110px;
+    }
+
+    .osn {
+        width: 100%;
+        height: 140%;
+        top: 11%;
+    }
+
+            input[type="checkbox"] {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+
+    .checkboxs {
+        margin-left: -32%;
+    }
+
+    .checkboxs label{
+        font-size: 12pt;
+    }
+}
+
+@media (max-width: 780px) {
+
+    .goods a{
+        flex-basis: calc(100% / 3);
+        max-width: calc(100% / 3.4);
+    }
+
+    .goods h1 {
+        font-size: 10pt;
+    }
+
+    .goods h2 {
+        font-size: 12pt;
+    }
+
+    .filters h1 {
+    font-size: 16pt;
+    }
+
+    .filters a {
+    font-size: 10pt;
+    }
+
+    .goods {
+    left: 30%;
+    top: 5%;
+    width: 70%;
+    }
+
+    .filters {
+    left: 8%;
+    top: 5%;
+    width: 21%;
+    }
+
+    .osn {
+        width: 100%;
+        height: 140%;
+        top: 10%;
+    }
+
+    .headers a {
+    font-size: 14pt;
+    margin-left: 90px;
+    }
+
+        input[type="checkbox"] {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+
+    .checkboxs {
+        margin-left: -30%;
+    }
+
+    .checkboxs label{
+        font-size: 12pt;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .goods h1 {
+        font-size: 10pt;
+    }
+
+    .goods h2 {
+        font-size: 12pt;
+    }
+
+    .filters h1 {
+    font-size: 15pt;
+    }
+
+    .filters a {
+    font-size: 10pt;
+    }
+
+    .headers a {
+    font-size: 12pt;
+    margin-left: 75px;
+    }
+
+    .osn {
+        top: 9%;
+    }
+
+    input[type="checkbox"] {
+      width: 9px;
+      height: 9px;
+      border-radius: 2px;
+    }
+
+    .checkboxs {
+        margin-left: -35%;
+    }
+
+    .checkboxs label{
+        font-size: 11pt;
+    }
+}
+
+@media (max-width: 500px) {
+    .goods a{
+        flex-basis: calc(100% / 2);
+        max-width: calc(100% / 2.3);
+    }
+
+    .goods h1 {
+        font-size: 10pt;
+    }
+
+    .goods h2 {
+        font-size: 10pt;
+    }
+
+    .filters h1 {
+    font-size: 15pt;
+    }
+
+    .filters a {
+    font-size: 10pt;
+    }
+
+    .goods {
+    left: 35%;
+    top: 5%;
+    width: 65%;
+    }
+
+    .filters {
+    left: 8%;
+    top: 5%;
+    width: 25%;
+    }
+
+    .osn {
+        width: 100%;
+        height: 140%;
+        top: 9%;
+    }
+
+    .headers a {
+    font-size: 10pt;
+    margin-left: 60px;
+    }
+
+    input[type="checkbox"] {
+      width: 9px;
+      height: 9px;
+      border-radius: 2px;
+    }
+
+    .checkboxs {
+        margin-left: -30%;
+    }
+
+    .checkboxs label{
+        font-size: 9pt;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .filters h1 {
+    font-size: 13pt;
+    }
+
+    .filters a {
+    font-size: 10pt;
+    }
+
+    .checkboxs label{
+    font-size: 9pt;
+
+    }
+
+    .checkboxs {
+        margin-left: -30%;
+    }
+
+    input[type="checkbox"] {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+    }
+
+    #submit {
+        font-size: 8pt;
+        padding: 8px;
+        border-radius: 10px;
+        margin-bottom: 0.5%;
+        margin-top: 0.5%;
+    }
+
+    #reset {
+        font-size: 8pt;
+        padding: 8px;
+        border-radius: 10px;
+        margin-bottom: 0.5%;
+    }
+
+        .headers a {
+    font-size: 10pt;
+    margin-left: 50px;
+    }
+
+}
+
+@media (max-width: 410px) {
+
+    .headers a {
+    font-size: 8pt;
+    margin-left: 40px;
+    }
+
+    .osn {
+        top: 8%;
+    }
+
+    .filters h1 {
+    font-size: 11pt;
+    }
+
+    .filters a {
+    font-size: 10pt;
+    }
+
+    .checkboxs {
+        margin-left: -35%;
+    }
+}
+
+@media (max-width: 370px) {
+    .checkboxs {
+        margin-left: -40%;
+    }
+}

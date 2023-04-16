@@ -41,7 +41,6 @@ html {
     font-family: 'Jost SemiBold', sans-serif;
     font-size: 18pt;
     margin-right: 10%;
-    background-image: url("../img/2.png");
 }
 
 body {
@@ -50,10 +49,9 @@ body {
 }
 
 #login {
-    display: flex;
-    justify-content: space-between;
     color: #72B01D;
-    margin-left: 80%;
+    text-align: right;
+    margin-left: 20%;
 
 }
 
@@ -69,6 +67,7 @@ nav:last-of-type {
   }
 
 .headers a {
+    font-family: 'Jost SemiBold', sans-serif;
     text-decoration: none;
     color: white;
     margin-left: 150px;
@@ -83,6 +82,7 @@ nav:last-of-type {
     height: 40vh;
     margin-top: 0px;
     margin-bottom: 2%;
+    text-align: justify;
 }
 
 .about_us h1 {
@@ -100,4 +100,40 @@ nav:last-of-type {
     margin-bottom: 2%;
     border-top: 0;
 
+}
+
+@media (max-width: 1000px) {
+    .headers a {
+    font-size: 16pt;
+    margin-left: 110px;
+    }
+}
+
+@media (max-width: 780px) {
+    .headers a {
+    font-size: 14pt;
+    margin-left: 87px;
+    }
+}
+
+@media (max-width: 600px) {
+    .headers a {
+    font-size: 12pt;
+    margin-left: 69px;
+    }
+}
+
+@media (max-width: 500px) {
+    .headers a {
+    font-size: 10pt;
+    margin-left: 50px;
+    }
+}
+
+@media (max-width: 410px) {
+
+    .headers a {
+    font-size: 8pt;
+    margin-left: 40px;
+    }
 }

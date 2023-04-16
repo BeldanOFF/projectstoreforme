@@ -51,10 +51,9 @@ body {
 }
 
 #login {
-    display: flex;
-    justify-content: space-between;
     color: #72B01D;
-    margin-left: 80%;
+    text-align: right;
+    margin-left: 20%;
 
 }
 
@@ -81,63 +80,40 @@ nav:last-of-type {
     top: 18%;
     left: 0;
     width: 100%;
-    height: 110%;
+    height: auto;
+    padding-bottom: 20%;
+}
+
+.mains {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-left: 10%;
+    margin-top: 5%;
 }
 
 .Oimage {
-    background-color: rgb(219, 219, 219);
-    position: absolute;
     top: 10%;
     left: 15%;
-    width: 35%;
-    height: 58%;
-
+    width: 100%;
+    height: 40%;
+    margin-right: 50px;
+    min-width: 250px;
+    max-width: 650px;
     border-radius: 15px;
 }
 
 .Oimage img{
-    width: 102%;
+    width: 100%;
     border-radius: 15px;
 }
 
-/* .Vimages {
-    position: absolute;
-    top: 10%;
-    left: 3%;
-    width: 90%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-}
-.Vimage {
-    margin-bottom: 1%;
-    margin-top: 0px;
-    background-color: rgb(219, 219, 219);
-    position: relative;
-    top: 10%;
-    left: 10%;
-    width: 6%;
-    height: 10%;
-    border-radius: 10px;
-}
-.down {
-    position: absolute;
-    width: 2%;
-    top: 71vh;
-    left: 25.5vh;
-}
-.up {
-    position: absolute;
-    width: 2%;
-    left: 25.5vh;
-    top: 11.2vh;
-} */
-
 .navigate {
-    position: absolute;
+    display:block;
     top: 27%;
     right: 16%;
-    width: 600px;
+    width: 70%;
+    min-width: 250px;
+    margin-left: 5%;
 }
 
 .navigate h2 {
@@ -178,7 +154,7 @@ nav:last-of-type {
     background-color: white;
     width: 103%;
     border-radius: 15px;
-    height: 19vh;
+    padding-bottom: 5%;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 15px;
 }
 
@@ -195,8 +171,8 @@ nav:last-of-type {
     background: black;
     color: #A1E06F;
     width: 90%;
-    height: 5vh;
-    line-height: 5  vh;
+    height: 32%;
+    line-height: 280%;
     border-radius: 10px;
     margin-top: 5%;
     margin-left: 5%;
@@ -212,15 +188,16 @@ nav:last-of-type {
     margin-left: 5%;
     width: 42%;
     margin-top: 5%;
-    height: 5vh;
-    line-height: 4.5vh;
+    height: 32%;
+    line-height: 280%;
+    white-space: nowrap;
 }
 
 .description {
-    position: absolute;
-    top: 95%;
-    left: 15%;
-    width: 70%;
+    margin-left: 9.5%;
+    margin-top: 1%;
+    width: 80%;
+    text-align: justify;
 }
 
 .description h1 {
@@ -236,9 +213,9 @@ nav:last-of-type {
 }
 
 .sizes label {
-  margin-right: 5px;
+  margin-right: 5%;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 5%;
 }
 
 .sizes label span {
@@ -253,8 +230,8 @@ nav:last-of-type {
   text-align: center;
   border-radius: 8px;
   width: 110%;
-  height: 4vh;
-  line-height: 4vh;
+  height: 100%;
+  line-height: 250%;
   margin-bottom: 5px;
 }
 
@@ -266,76 +243,316 @@ nav:last-of-type {
   border-color: green;
 }
 
-@media (max-width: 1850px) {
-    .navigate {
-        width: 500px;
-    }
+@media (max-width: 1500px) {
 
-    .Oimage img{
-    width: 100%;
-    border-radius: 15px;
+    .osn {
+        top: 15%;
     }
 
     .description {
-    position: absolute;
-    top: 115%;
-    left: 15%;
-    width: 70%;
+    margin-left: 10%;
+    margin-top: -2%;
+    width: 80%;
+    }
+
+}
+
+@media (max-width: 1200px) {
+
+    .osn {
+        top: 13%;
+    }
+
+        .description {
+    margin-left: 10%;
+    margin-top: -8%;
+    width: 45%;
+    }
+
+}
+
+
+@media (max-width: 1000px) {
+
+    .headers a {
+    font-size: 16pt;
+    margin-left: 110px;
     }
 
     .osn {
-        height: 120%;
+        top: 11%;
+    }
+
+            .description {
+    margin-left: 10%;
+    margin-top: -15%;
+    width: 45%;
+    }
+
+    .pays button {
+        font-size: 10pt;
     }
 }
 
-@media (max-width: 1650px) {
-    .navigate {
-        width: 450px;
+@media (max-width: 780px) {
+
+    .osn {
+        top: 10%;
     }
 
-    .Oimage img{
-    width: 100%;
-    border-radius: 15px;
+    .headers a {
+    font-size: 14pt;
+    margin-left: 90px;
+    }
+
+        .navigate h2 {
+        font-family: 'Jost Regular', sans-serif;
+        color: black;
+        font-size: 20pt;
+        right: 10%;
+        margin-bottom: 7%;
+    }
+
+    .navigate h1 {
+        font-family: 'Jost Regular', sans-serif;
+        color: black;
+        font-size: 30pt;
+        right: 10%;
+        margin-bottom: 7%;
+    }
+
+    .navigate h3 {
+        font-family: 'Jost Regular', sans-serif;
+        color: #646464;
+        font-size: 12pt;
+        right: 10%;
+        margin-bottom: 1%;
     }
 
     .description {
-    position: absolute;
-    top: 105%;
-    left: 15%;
-    width: 70%;
+    margin-left: 10%;
+    margin-top: -22%;
+    width: 45%;
     }
 }
 
-@media (max-width: 1450px) {
-    .navigate {
-        width: 400px;
-    }
-        .Oimage img{
-    width: 100%;
-    border-radius: 15px;
+@media (max-width: 600px) {
+
+    .headers a {
+    font-size: 12pt;
+    margin-left: 70px;
     }
 
-    .description {
-    position: absolute;
-    top: 95%;
-    left: 15%;
-    width: 38%;
+    .mains {
+        display: grid;
+        grid-template-columns: 50%;
+        margin-left: 10%;
+        margin-top: 5%;
     }
+
+    .Oimage {
+        min-width: 400px;
+    }
+
+    .osn {
+        top: 9%;
+    }
+
+    .navigate {
+        display:block;
+        top: 27%;
+        right: 16%;
+        width: 40%;
+        min-width: 385px;
+        margin-left: 5%;
+    }
+
+    .navigate h2 {
+        font-family: 'Jost Regular', sans-serif;
+        color: black;
+        font-size: 18pt;
+        right: 10%;
+        margin-bottom: 7%;
+    }
+
+    .navigate h1 {
+        font-family: 'Jost Regular', sans-serif;
+        color: black;
+        font-size: 28pt;
+        right: 10%;
+        margin-bottom: 7%;
+    }
+
+    .navigate h3 {
+        font-family: 'Jost Regular', sans-serif;
+        color: #646464;
+        font-size: 13pt;
+        right: 10%;
+        margin-bottom: 1%;
+    }
+
+        .description {
+    margin-left: 10%;
+    margin-top: 0%;
+    width: 80%;
+    min-width: 400px;
+    }
+
 }
 
-@media (max-width: 1250px) {
-    .navigate {
-        width: 350px;
+@media (max-width: 500px) {
+
+    .Oimage {
+        min-width: 350px;
     }
-        .Oimage img{
-    width: 100%;
-    border-radius: 15px;
+
+    .navigate {
+        display:block;
+        top: 27%;
+        right: 16%;
+        width: 50%;
+        min-width: 330px;
+        margin-left: 5%;
+    }
+
+    .navigate h2 {
+        font-family: 'Jost Regular', sans-serif;
+        color: black;
+        font-size: 16pt;
+        right: 10%;
+        margin-bottom: 7%;
+    }
+
+    .navigate h1 {
+        font-family: 'Jost Regular', sans-serif;
+        color: black;
+        font-size: 26pt;
+        right: 10%;
+        margin-bottom: 7%;
+    }
+
+    .navigate h3 {
+        font-family: 'Jost Regular', sans-serif;
+        color: #646464;
+        font-size: 12pt;
+        right: 10%;
+        margin-bottom: 1%;
+    }
+
+    .headers a {
+    font-size: 10pt;
+    margin-left: 60px;
     }
 
     .description {
-    position: absolute;
-    top: 90%;
-    left: 15%;
-    width: 36%;
+    margin-left: 10%;
+    margin-top: 0%;
+    width: 80%;
+    min-width: 350px;
+    }
+
+
+@media (max-width: 450px) {
+
+        .headers a {
+    font-size: 10pt;
+    margin-left: 50px;
+    }
+
+        .Oimage {
+        min-width: 320px;
+    }
+
+    .navigate {
+        display:block;
+        top: 27%;
+        right: 16%;
+        width: 40%;
+        min-width: 300px;
+        margin-left: 5%;
+    }
+
+    .navigate h2 {
+        font-family: 'Jost Regular', sans-serif;
+        color: black;
+        font-size: 14pt;
+        right: 10%;
+        margin-bottom: 7%;
+    }
+
+    .navigate h1 {
+        font-family: 'Jost Regular', sans-serif;
+        color: black;
+        font-size: 22pt;
+        right: 10%;
+        margin-bottom: 7%;
+    }
+
+    .navigate h3 {
+        font-family: 'Jost Regular', sans-serif;
+        color: #646464;
+        font-size: 10pt;
+        right: 10%;
+        margin-bottom: 1%;
+    }
+
+    .description {
+    margin-left: 10%;
+    margin-top: 0%;
+    width: 80%;
+    min-width: 320px;
+    }
+
+}
+
+@media (max-width: 410px) {
+
+    .headers a {
+    font-size: 8pt;
+    margin-left: 40px;
+    }
+
+    .Oimage {
+        min-width: 290px;
+    }
+
+    .navigate {
+        display:block;
+        top: 27%;
+        right: 16%;
+        width: 40%;
+        min-width: 270px;
+        margin-left: 5%;
+    }
+
+    .navigate h2 {
+        font-family: 'Jost Regular', sans-serif;
+        color: black;
+        font-size: 12pt;
+        right: 10%;
+        margin-bottom: 7%;
+    }
+
+    .navigate h1 {
+        font-family: 'Jost Regular', sans-serif;
+        color: black;
+        font-size: 20pt;
+        right: 10%;
+        margin-bottom: 7%;
+    }
+
+    .navigate h3 {
+        font-family: 'Jost Regular', sans-serif;
+        color: #646464;
+        font-size: 8pt;
+        right: 10%;
+        margin-bottom: 1%;
+    }
+
+        .description {
+    margin-left: 10%;
+    margin-top: 0%;
+    width: 80%;
+    min-width: 290px;
     }
 }
