@@ -41,7 +41,7 @@
         </div>
         <div class="goods">
             {% for el in product %}
-            <a href="/product/{{ el.id }}">
+            <a href="{{ catalog_id }}/product/{{ el.id }}">
                 <div>
                     <img src="/static/products_img/{{ el.image }}" alt="">
                     <h2>{{ el.name }}</h2>

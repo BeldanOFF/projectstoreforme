@@ -4,6 +4,8 @@ import random
 from flask import Flask, render_template, request, redirect, url_for, session, abort, flash
 from flask_admin import Admin, form
 from flask_admin.contrib.sqla import ModelView
+from flask_admin.form import Select2Field
+from flask_admin.model import InlineFormAdmin
 from flask_login import LoginManager, login_user, logout_user, login_required
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
@@ -30,10 +32,6 @@ class Collections(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     products = db.relationship('Product', backref='collections', lazy=True)
-
-class Collection_tov(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100))
 
 
 class Product(db.Model):
@@ -95,6 +93,47 @@ class StorageAdminModel(ModelView):
         )
 
 
+class ProductAdminModel(StorageAdminModel):
+    form_extra_fields = {
+        'catalog_id': Select2Field('Catalog', choices=[]),
+        'collection_id': Select2Field('Collection', choices=[]),
+        'file': form.FileUploadField('file')
+    }
+
+    def _change_path_data(self, _form):
+        try:
+            storage_file = _form.file.data
+
+            if storage_file is not None:
+                hash = random.getrandbits(128)
+                ext = storage_file.filename.split('.')[-1]
+                path = '%s.%s' % (hash, ext)
+
+                storage_file.save(
+                    os.path.join(app.config['STORAGE'], path)
+                )
+
+                _form.image.data = path
+
+                del _form.file
+
+        except Exception as ex:
+            pass
+
+        return _form
+
+    def create_form(self, obj=None):
+        form = super(ProductAdminModel, self).create_form(obj=obj)
+        form.collection_id.choices = [(c.id, c.title) for c in Collections.query.all()]
+        form.catalog_id.choices = [(c.id, c.title) for c in Catalog.query.all()]
+        return form
+
+    def edit_form(self, obj=None):
+        form = super(StorageAdminModel, self).edit_form(obj=obj)
+        form.collection_id.choices = [(c.id, c.title) for c in Collections.query.all()]
+        return form
+
+
 class UserView(ModelView):
     form_columns = ('name', 'email')
 
@@ -104,7 +143,7 @@ class CollectionView(ModelView):
 
 
 admin = Admin(app, name='Online Store Admin Panel')
-admin.add_view(StorageAdminModel(Product, db.session))
+admin.add_view(ProductAdminModel(Product, db.session))
 admin.add_view(StorageAdminModel(Catalog, db.session))
 admin.add_view(CollectionView(Collections, db.session))
 admin.add_view(UserView(User, db.session))
@@ -135,25 +174,20 @@ def register():
 
         # Проверяем, что все поля заполнены
         if not name or not email or not password:
-            notification = 'Заполните все поля'
-            return render_template('register.html', notification=notification, color='red')
+            return 'Заполните все поля'
 
         # Проверяем, что пользователь с таким email уже не зарегистрирован
-        elif User.query.filter_by(email=email).first():
-            notification = 'Пользователь с таким email уже зарегистрирован'
-            return render_template('register.html', notification=notification, color='red')
+        if User.query.filter_by(email=email).first():
+            return 'Пользователь с таким email уже зарегистрирован'
 
-        else:
-            # Создаем нового пользователя
-            user = User(name=name, email=email, password=password_hash)
+        # Создаем нового пользователя
+        user = User(name=name, email=email, password=password_hash)
 
-            # Добавляем пользователя в базу данных
-            db.session.add(user)
-            db.session.commit()
+        # Добавляем пользователя в базу данных
+        db.session.add(user)
+        db.session.commit()
 
-            notification = 'Вы успешно зарегистрировались'
-
-            return render_template('register.html', notification=notification, color='green')
+        return 'Регистрация прошла успешно!'
     else:
         return render_template('register.html')
 
@@ -163,12 +197,13 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 
-@app.route('/product/<int:product_id>')
-def product_page(product_id):
+@app.route('/catalog/<int:catalog_id>/product/<int:product_id>')
+def product_page(catalog_id, product_id):
+    catalogs = catalog_id
     product = Product.query.get(product_id)
     if product is None:
         abort(404)
-    return render_template('product.html', product=product)
+    return render_template('product.html', product=product, catalog_id=catalogs)
 
 
 @app.route('/userlogin', methods=['GET', 'POST'])
@@ -182,19 +217,17 @@ def userlogin():
 
         if not user or not user.password or not user.password.startswith('pbkdf2:sha256:'):
             # Invalid email or password hash format
-            notification = 'Не правильный email или пароль'
-            return render_template('userlogin.html', notification=notification, color='red')
+            flash('Invalid email or password')
+            return redirect(url_for('userlogin'))
 
-        elif check_password_hash(user.password, password):
+        if check_password_hash(user.password, password):
             # Password is correct, login the user
-            notification = 'Вы вошли'
-            return render_template('userlogin.html', notification=notification, color='green')
+            flash('Logged in successfully.')
+            return redirect(url_for('index'))
         else:
             # Password is incorrect
-            notification = 'Не правильный email или пароль'
-            return render_template('userlogin.html', notification=notification, color='red')
-
-
+            flash('Invalid email or password')
+            return redirect(url_for('userlogin'))
     else:
         return render_template('userlogin.html')
 
@@ -238,6 +271,7 @@ def admin_login_required(f):
 @admin_login_required
 def admin():
     return redirect(url_for('admin.index'))
+
 
 
 @app.route('/catalog')
