@@ -163,7 +163,7 @@ nav:last-of-type {
 
     .headers a {
     font-size: 14pt;
-    margin-left: 87px;
+    margin-left: 76px;
     }
 
     .title h1 {
@@ -196,7 +196,7 @@ nav:last-of-type {
 
     .headers a {
     font-size: 12pt;
-    margin-left: 69px;
+    margin-left: 59px;
     }
 
     .title h1 {
@@ -227,7 +227,7 @@ nav:last-of-type {
 @media (max-width: 500px) {
     .headers a {
     font-size: 10pt;
-    margin-left: 50px;
+    margin-left: 56px;
     }
 
     .mains {
@@ -267,11 +267,18 @@ nav:last-of-type {
 
 }
 
+@media (max-width: 450px) {
+    .headers a {
+    font-size: 10pt;
+    margin-left: 44px;
+    }
+}
+
 @media (max-width: 410px) {
 
     .headers a {
     font-size: 8pt;
-    margin-left: 40px;
+    margin-left: 34px;
     }
 
         .title h1 {

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/profile.css">
+    <title>Профиль</title>
+</head>
+<body>
+
+    <header class="headers">
+        <nav>
+            <a href="/" >Главная</a>
+            <a href="/catalog" >Каталог</a>
+            <a href="/info" >О нас</a>
+        </nav>
+        <nav>
+            <a id="login" href="/profile">Профиль</a>
+        </nav>
+    </header>
+
+    <div class="osn">
+        <div class="mains">
+            <div class="profile">
+                <img src="../static/svg/profile.svg" alt="">
+                <h1>{{ user.name }}</h1>
+                <h2>{{ user.email }}</h2>
+            </div>
+            <div class="buttons">
+                <div>
+                    <a href="">
+                        <div class="image">
+                            <img src="../static/svg/history.svg" style="">
+                        </div>
+                        <h2>История</h2>
+                    </a>
+                </div>
+                <div>
+                    <a href="/logout">
+                        <div class="image">
+                            <img src="../static/svg/exit.svg" alt="">
+                        </div>
+                        <h2>Выход</h2>
+                    </a>
+                </div>
+            </div>
+            <div class="resetlogin">
+                <h1 class="item">Изменить пароль</h1>
+                <form method="POST" action="{{ url_for('profile') }}">
+                    <h4>Старый пароль</h4>
+                    <input type="password" id="lastpassword" name="lastpassword">
+                    <h4>Новый пароль</h4>
+                    <input type="password" id="password" name="password">
+                    <button>Изменить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="notification-{{ color }}" class="hidden">{{ notification }}</div>
+
+    <script>
+      // Находим уведомление по ID
+      const notification = document.getElementById("notification-{{ color }}");
+
+      // Показываем уведомление, если оно есть
+      if (notification.innerHTML) {
+        notification.classList.remove("hidden");
+
+        // Скрываем уведомление через 5 секунд
+        setTimeout(function() {
+          notification.classList.add("hidden");
+        }, 5000);
+      }
+    </script>
+
+
+</body>
+</html>

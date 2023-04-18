@@ -412,7 +412,7 @@ input[type="checkbox"]:checked::before {
 
     .headers a {
     font-size: 14pt;
-    margin-left: 90px;
+    margin-left: 76px;
     }
 
         input[type="checkbox"] {
@@ -450,7 +450,7 @@ input[type="checkbox"]:checked::before {
 
     .headers a {
     font-size: 12pt;
-    margin-left: 75px;
+    margin-left: 59px;
     }
 
     .osn {
@@ -514,7 +514,7 @@ input[type="checkbox"]:checked::before {
 
     .headers a {
     font-size: 10pt;
-    margin-left: 60px;
+    margin-left: 56px;
     }
 
     input[type="checkbox"] {
@@ -574,7 +574,7 @@ input[type="checkbox"]:checked::before {
 
         .headers a {
     font-size: 10pt;
-    margin-left: 50px;
+    margin-left: 44px;
     }
 
 }
@@ -583,7 +583,7 @@ input[type="checkbox"]:checked::before {
 
     .headers a {
     font-size: 8pt;
-    margin-left: 40px;
+    margin-left: 34px;
     }
 
     .osn {

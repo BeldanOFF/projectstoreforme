@@ -75,7 +75,7 @@ nav:last-of-type {
 
 .about_us {
     position: absolute;
-    top: 20%;
+    top: 15%;
     left: 8.5%;
     color: rgb(255, 255, 255);
     width: 80%;
@@ -89,7 +89,7 @@ nav:last-of-type {
     color: rgb(255, 255, 255);
     font-family: 'Jost SemiBold', sans-serif;
     border-bottom: 0px;
-    border-top: 4%px;
+    border-top: 4%;
 
 }
 
@@ -102,38 +102,52 @@ nav:last-of-type {
 
 }
 
+
+
 @media (max-width: 1000px) {
+
     .headers a {
     font-size: 16pt;
     margin-left: 110px;
     }
-}
 
 @media (max-width: 780px) {
     .headers a {
     font-size: 14pt;
-    margin-left: 87px;
+    margin-left: 76px;
     }
 }
 
 @media (max-width: 600px) {
+
     .headers a {
     font-size: 12pt;
-    margin-left: 69px;
+    margin-left: 59px;
     }
 }
 
 @media (max-width: 500px) {
+
     .headers a {
     font-size: 10pt;
-    margin-left: 50px;
+    margin-left: 56px;
     }
+
+
+
+@media (max-width: 450px) {
+
+        .headers a {
+    font-size: 10pt;
+    margin-left: 44px;
+    }
+
 }
 
 @media (max-width: 410px) {
 
     .headers a {
     font-size: 8pt;
-    margin-left: 40px;
+    margin-left: 34px;
     }
 }

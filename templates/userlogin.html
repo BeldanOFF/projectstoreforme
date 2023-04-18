@@ -12,24 +12,25 @@
     <header class="headers">
         <nav>
             <a href="/" >Главная</a>
-            <a href="/catalog" >Продукты</a>
+            <a href="/catalog" >Каталог</a>
             <a href="/info" >О нас</a>
         </nav>
         <nav>
-            <a href="" id="login">Вход</a>
+            <a id="login" {% if user.is_active %} href="/profile">Профиль{% else %}  href="/userlogin"> Вход{% endif %}</a>
         </nav>
     </header>
-
-    <div class="login">
-        <h1 class="item">Войти</h1>
-        <form method="POST" action="{{ url_for('userlogin') }}">
-            <h4>Почта</h4>
-            <input type="text" id="username" name="username">
-            <h4>Пароль</h4>
-            <input type="text" id="password" name="password">
-            <button>Войти</button>
-        </form>
-        <h5>Нету? <a href="/register">создай!</a></h5>
+    <div class="osn">
+        <div class="login">
+            <h1 class="item">Войти</h1>
+            <form method="POST" action="{{ url_for('userlogin') }}">
+                <h4>Почта</h4>
+                <input type="text" id="username" name="username">
+                <h4>Пароль</h4>
+                <input type="password" id="password" name="password">
+                <button>Войти</button>
+            </form>
+            <h5>Нету? <a href="/register">создай!</a></h5>
+        </div>
     </div>
 
     <div id="notification-{{ color }}" class="hidden">{{ notification }}</div>

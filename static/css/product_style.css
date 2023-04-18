@@ -47,7 +47,6 @@ html {
 body {
     background-color: black;
     color: white;
-    margin-left: 0;
 }
 
 #login {
@@ -62,6 +61,7 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-top: 5%;
+    width: 100%;
 }
 
 nav:last-of-type {
@@ -69,6 +69,7 @@ nav:last-of-type {
   }
 
 .headers a {
+    font-family: 'Jost SemiBold', sans-serif;
     text-decoration: none;
     color: white;
     margin-left: 150px;
@@ -81,7 +82,7 @@ nav:last-of-type {
     left: 0;
     width: 100%;
     height: auto;
-    padding-bottom: 20%;
+    padding-bottom: 10%;
 }
 
 .mains {
@@ -92,14 +93,15 @@ nav:last-of-type {
 }
 
 .Oimage {
+    background-color: #E9E9E9;
     top: 10%;
     left: 15%;
     width: 100%;
-    height: 40%;
+    height: 98.5%;
     margin-right: 50px;
     min-width: 250px;
-    max-width: 650px;
-    border-radius: 15px;
+    max-width: 800px;
+    border-radius: 18px;
 }
 
 .Oimage img{
@@ -271,7 +273,6 @@ nav:last-of-type {
 
 }
 
-
 @media (max-width: 1000px) {
 
     .headers a {
@@ -298,11 +299,12 @@ nav:last-of-type {
 
     .osn {
         top: 10%;
+        padding-bottom: 65%;
     }
 
     .headers a {
     font-size: 14pt;
-    margin-left: 90px;
+    margin-left: 76px;
     }
 
         .navigate h2 {
@@ -340,7 +342,7 @@ nav:last-of-type {
 
     .headers a {
     font-size: 12pt;
-    margin-left: 70px;
+    margin-left: 59px;
     }
 
     .mains {
@@ -441,7 +443,7 @@ nav:last-of-type {
 
     .headers a {
     font-size: 10pt;
-    margin-left: 60px;
+    margin-left: 56px;
     }
 
     .description {
@@ -456,7 +458,7 @@ nav:last-of-type {
 
         .headers a {
     font-size: 10pt;
-    margin-left: 50px;
+    margin-left: 44px;
     }
 
         .Oimage {
@@ -509,7 +511,7 @@ nav:last-of-type {
 
     .headers a {
     font-size: 8pt;
-    margin-left: 40px;
+    margin-left: 34px;
     }
 
     .Oimage {

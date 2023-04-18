@@ -6,7 +6,7 @@ from flask_admin import Admin, form
 from flask_admin.contrib.sqla import ModelView
 from flask_admin.form import Select2Field
 from flask_admin.model import InlineFormAdmin
-from flask_login import LoginManager, login_user, logout_user, login_required
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from flask_sqlalchemy import SQLAlchemy
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -53,6 +53,15 @@ class User(db.Model):
 
     def __repr__(self):
         return f'<User {self.name}>'
+
+    def is_active(self):
+        return True
+
+    def get_id(self):
+        return str(self.id)
+
+    def is_authenticated(self):
+        return True
 
 
 class StorageAdminModel(ModelView):
@@ -155,13 +164,13 @@ def index():
     collections = Collections.query.order_by(Collections.title).all()
     catalog = Catalog.query.order_by(Catalog.title).all()
     items = Product.query.order_by(Product.price).all()
-
-    return render_template('index.html', collections=collections, catalog=catalog)
+    print(current_user)
+    return render_template('index.html', collections=collections, catalog=catalog, user=current_user)
 
 
 @app.route('/info')
 def info():
-    return render_template('info.html')
+    return render_template('info.html', user=current_user)
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -174,11 +183,11 @@ def register():
 
         # Проверяем, что все поля заполнены
         if not name or not email or not password:
-            return 'Заполните все поля'
+            return render_template('register.html', notification='Заполните все поля', color='red', user=current_user)
 
         # Проверяем, что пользователь с таким email уже не зарегистрирован
         if User.query.filter_by(email=email).first():
-            return 'Пользователь с таким email уже зарегистрирован'
+            return render_template('register.html', notification='Пользователь с таким email уже зарегистрирован', color='red', user=current_user)
 
         # Создаем нового пользователя
         user = User(name=name, email=email, password=password_hash)
@@ -187,14 +196,9 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        return 'Регистрация прошла успешно!'
+        return render_template('userlogin.html', notification='Регистрация прошла успешно', color='green', user=current_user)
     else:
-        return render_template('register.html')
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+        return render_template('register.html', user=current_user)
 
 
 @app.route('/catalog/<int:catalog_id>/product/<int:product_id>')
@@ -203,8 +207,12 @@ def product_page(catalog_id, product_id):
     product = Product.query.get(product_id)
     if product is None:
         abort(404)
-    return render_template('product.html', product=product, catalog_id=catalogs)
+    return render_template('product.html', product=product, catalog_id=catalogs, user=current_user)
 
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 @app.route('/userlogin', methods=['GET', 'POST'])
 def userlogin():
@@ -218,18 +226,81 @@ def userlogin():
         if not user or not user.password or not user.password.startswith('pbkdf2:sha256:'):
             # Invalid email or password hash format
             flash('Invalid email or password')
-            return redirect(url_for('userlogin'))
+            return render_template('userlogin.html', notification='Неверный логин или пароль', color='red', user=current_user)
 
         if check_password_hash(user.password, password):
             # Password is correct, login the user
+            login_user(user)
             flash('Logged in successfully.')
-            return redirect(url_for('index'))
+            return render_template('userlogin.html', notification='Вы успешно вошли!', color='green', user=current_user)
         else:
             # Password is incorrect
             flash('Invalid email or password')
-            return redirect(url_for('userlogin'))
+            return render_template('userlogin.html', notification='Неверный логин или пароль', color='red', user=current_user)
     else:
-        return render_template('userlogin.html')
+        return render_template('userlogin.html', user=current_user)
+
+@app.route('/profile',  methods=['GET', 'POST'])
+@login_required
+def profile():
+    if request.method == 'POST':
+        print(current_user.email)
+        user = User.query.filter_by(email=current_user.email).first()
+        last_password = request.form['lastpassword']
+        password = request.form['password']
+        password_hash = generate_password_hash(password)
+        if not user or not user.password or not user.password.startswith('pbkdf2:sha256:'):
+            return "ЭЭЭЭЭЭЭ"
+        if not (check_password_hash(user.password, last_password)):
+            return render_template('profile.html', user=current_user, color="red", notification='Неверный пароль')
+        elif last_password == password:
+            return render_template('profile.html', user=current_user, color="red", notification='Пароли не должны \
+             совпадать')
+        else:
+            user.password = password_hash
+            db.session.commit()
+            return render_template('profile.html', user=current_user, color="green", notification='Пароль успешно \
+             изменён')
+
+
+
+    else:
+        return render_template('profile.html', user=current_user)
+
+@app.route('/settings', methods=['GET', 'POST'])
+@login_required
+def settings():
+    if request.method == 'POST':
+        # Change password
+        old_password = request.form['old_password']
+        new_password = request.form['new_password']
+        confirm_password = request.form['confirm_password']
+
+        if not check_password_hash(current_user.password, old_password):
+            flash('Invalid password')
+            return redirect(url_for('settings'))
+
+        if new_password != confirm_password:
+            flash('Passwords do not match')
+            return redirect(url_for('settings'))
+
+        current_user.password = generate_password_hash(new_password)
+        db.session.commit()
+
+        flash('Password changed successfully')
+        return redirect(url_for('settings'))
+
+    return render_template('settings.html', user=current_user)
+
+@app.route('/delete_account', methods=['POST'])
+@login_required
+def delete_account():
+    db.session.delete(current_user)
+    db.session.commit()
+
+    logout_user()
+    flash('Account deleted successfully')
+    return redirect(url_for('index'))
 
 
 @app.route('/logout')
@@ -259,7 +330,7 @@ def adminlogin():
 def admin_login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if not session.get('logged_in'):
+        if not session.get('logged_in') and request.path.startswith('/admin'):
             return redirect(url_for('adminlogin'))
         return f(*args, **kwargs)
 
@@ -273,7 +344,6 @@ def admin():
     return redirect(url_for('admin.index'))
 
 
-
 @app.route('/catalog')
 def catalog():
     category = request.args.get('category')
@@ -282,7 +352,7 @@ def catalog():
         catalog = Catalog.query.filter_by(category=category).order_by(Catalog.title).all()
     else:
         catalog = Catalog.query.order_by(Catalog.title).all()
-    return render_template('catalog odej.html', collections=collections, catalog=catalog)
+    return render_template('catalog odej.html', collections=collections, catalog=catalog, user=current_user)
 
 
 @app.route('/catalog/<int:catalog_id>')
@@ -296,9 +366,9 @@ def catalog_tag(catalog_id):
         product = Product.query.filter(Product.catalog_id == catalog_id).order_by(Product.name).all()
     else:
         product = Product.query.filter(Product.catalog_id == catalog_id, Product.collection_id.in_(collections)).all()
-    return render_template('catalog.html', product=product, collection=collection, collections=collections, catalog_id=catalog_id)
-
+    return render_template('catalog.html', product=product, collection=collection, collections=collections,
+                           catalog_id=catalog_id, user=current_user)
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", debug=True)
+    app.run(debug=True)
