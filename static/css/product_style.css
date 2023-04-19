@@ -7,7 +7,7 @@
 
 a {
     text-decoration: none;
-    color: black;
+    color: white;
 
 }
 
@@ -31,9 +31,10 @@ a {
 }
 
 #logo {
+    position: absolute;
     width: 38%;
-    text-align: right;
-    margin-right: 50%;
+    top: 22%;
+    right: 10%;
 }
 
 html {
@@ -46,14 +47,15 @@ html {
 body {
     background-color: black;
     color: white;
-    overflow: hidden;
 }
+
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 5%;
+    width: 100%;
 }
 
 nav:last-of-type {
@@ -61,10 +63,12 @@ nav:last-of-type {
   }
 
 .headers a {
+    font-family: 'Jost SemiBold', sans-serif;
     text-decoration: none;
     color: white;
     margin-left: 150px;
 }
+
 
 .login {
     display: grid;
