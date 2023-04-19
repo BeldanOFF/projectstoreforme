@@ -1,5 +1,6 @@
 import os
 import random
+from datetime import datetime
 
 from flask import Flask, render_template, request, redirect, url_for, session, abort, flash
 from flask_admin import Admin, form
@@ -63,6 +64,46 @@ class User(db.Model):
     def is_authenticated(self):
         return True
 
+class Cart(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    product_id = db.Column(db.Integer, db.ForeignKey('product.id'), nullable=False)
+    quantity = db.Column(db.Integer, nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    def __repr__(self):
+        return f"<Cart {self.user_id}:{self.product_id}>"
+
+    def add_to_cart(product_id, quantity):
+        user_id = current_user.id
+        cart_item = Cart.query.filter_by(user_id=user_id, product_id=product_id).first()
+        if cart_item:
+            cart_item.quantity += quantity
+        else:
+            cart_item = Cart(user_id=user_id, product_id=product_id, quantity=quantity)
+            db.session.add(cart_item)
+        db.session.commit()
+
+    def remove_from_cart(product_id):
+        user_id = current_user.id
+        cart_item = Cart.query.filter_by(user_id=user_id, product_id=product_id).first()
+        if cart_item:
+            db.session.delete(cart_item)
+            db.session.commit()
+
+    def update_quantity(product_id, quantity):
+        user_id = current_user.id
+        cart_item = Cart.query.filter_by(user_id=user_id, product_id=product_id).first()
+        if cart_item:
+            cart_item.quantity = quantity
+            db.session.commit()
+
+    def get_cart_items(user_id):
+        return Cart.query.filter_by(user_id=user_id).all()
+
+    def clear_cart(user_id):
+        Cart.query.filter_by(user_id=user_id).delete()
+        db.session.commit()
 
 class StorageAdminModel(ModelView):
     form_extra_fields = {
@@ -200,13 +241,18 @@ def register():
         return render_template('register.html', user=current_user)
 
 
-@app.route('/catalog/<int:catalog_id>/product/<int:product_id>')
+@app.route('/catalog/<int:catalog_id>/product/<int:product_id>', methods=['GET', 'POST'])
 def product_page(catalog_id, product_id):
     catalogs = catalog_id
     product = Product.query.get(product_id)
     if product is None:
         abort(404)
-    return render_template('product.html', product=product, catalog_id=catalogs, user=current_user)
+    if request.method == 'POST':
+        pay = request.form['pay']
+        Cart.add_to_cart(pay, 1)
+        return render_template('product.html', product=product, catalog_id=catalogs, user=current_user)
+    else:
+        return render_template('product.html', product=product, catalog_id=catalogs, user=current_user)
 
 
 @login_manager.user_loader
@@ -365,9 +411,11 @@ def catalog_tag(catalog_id):
     return render_template('catalog.html', product=product, collection=collection, collections=collections,
                            catalog_id=catalog_id, user=current_user)
 
-@app.route('/cart')
+@app.route('/cart', methods=['GET', 'POST'])
 def cart():
-    return render_template('cart.html', user=current_user)
+    items = Cart.get_cart_items(current_user.id)
+    print(items)
+    return render_template('cart.html', user=current_user, items=items)
 
 if __name__ == '__main__':
     app.run(debug=True)

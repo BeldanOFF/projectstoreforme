@@ -26,19 +26,22 @@
     <div class="osn">
         <div class="mains">
             <div class="box1">
+                {% for el in items %}
+
                 <div class="ven">
                     <span class="x  " onclick="this.parentElement.style.display='none';">&times;</span>
-                    <img src="../static/products_img/футболка.png" alt="">
+                    <img src="../static/products_img/{{ el.image }}" alt="">
                     <div class="settings">
-                        <h1>ФУТБОЛКА</h1>
-                        <h2>5000руб</h2>
+                        <h1>{{ el.name }}</h1>
+                        <h2>{{ el.price }}</h2>
                         <div class="number">
                             <button class="number-minus" type="button" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
-                            <input type="number" min="1" value="1" readonly>
+                            <input type="number" min="1" value="{{ el.quantity }}" readonly>
                             <button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
             <div class="box2">
                 <h1>Общая стоимость</h1>

@@ -83,12 +83,13 @@
                         <span>XXL</span>
                     </label>
                 </div>
-                <div class="pays">
-                    <button id="adres">Адрес Доствки</button>
-                    <button id="config-pay">Способ оплаты</button>
-                    <button id="pay">Купить</button>
-
-                </div>
+                <form method="POST" action="{{ url_for('product_page', catalog_id=catalog_id, product_id=product.id) }}">
+                    <div class="pays">
+                        <button id="adres">Адрес Доствки</button>
+                        <button id="config-pay">Способ оплаты</button>
+                        <button id="pay" value="{{ product.id }}" name="pay">Купить</button>
+                    </div>
+                </form>
             </div>
         </div>
 
