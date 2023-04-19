@@ -99,7 +99,8 @@ class Cart(db.Model):
             db.session.commit()
 
     def get_cart_items(user_id):
-        return Cart.query.filter_by(user_id=user_id).all()
+        query_items = Cart.query.filter_by(user_id=user_id).all()
+        return [Product.query.filter_by(id=item.product_id).first() for item in query_items]
 
     def clear_cart(user_id):
         Cart.query.filter_by(user_id=user_id).delete()
