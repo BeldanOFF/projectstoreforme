@@ -7,7 +7,7 @@
 
 a {
     text-decoration: none;
-    color: white;
+    color: black;
 
 }
 
@@ -31,10 +31,9 @@ a {
 }
 
 #logo {
-    position: absolute;
     width: 38%;
-    top: 22%;
-    right: 10%;
+    text-align: right;
+    margin-right: 50%;
 }
 
 html {
@@ -47,13 +46,7 @@ html {
 body {
     background-color: black;
     color: white;
-}
-
-#login {
-    color: #72B01D;
-    text-align: right;
-    margin-left: 20%;
-
+    overflow: hidden;
 }
 
 header {
@@ -61,7 +54,6 @@ header {
     justify-content: space-between;
     align-items: center;
     margin-top: 5%;
-    width: 100%;
 }
 
 nav:last-of-type {
@@ -69,10 +61,36 @@ nav:last-of-type {
   }
 
 .headers a {
-    font-family: 'Jost SemiBold', sans-serif;
     text-decoration: none;
     color: white;
     margin-left: 150px;
+}
+
+.login {
+    display: grid;
+    grid-template-columns: 0% 90%;
+    color: #72B01D;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.login a{
+    color: #72B01D;
+    margin-left:0px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.login img {
+    width:35px;
+    margin-right:5px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    margin-bottom: 2px;`
 }
 
 .osn {

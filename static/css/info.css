@@ -48,29 +48,50 @@ body {
     color: white;
 }
 
-#login {
-    color: #72B01D;
-    text-align: right;
-    margin-left: 20%;
-
-}
 
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5%;
 }
 
 nav:last-of-type {
-    margin-left: auto;
-  }
+  margin-left: auto;
+}
 
 .headers a {
-    font-family: 'Jost SemiBold', sans-serif;
-    text-decoration: none;
-    color: white;
-    margin-left: 150px;
+  font-family: 'Jost SemiBold', sans-serif;
+  text-decoration: none;
+  color: white;
+  margin-left: 150px;
+}
+
+.login {
+    display: grid;
+    grid-template-columns: 0% 90%;
+    color: #72B01D;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.login a{
+    color: #72B01D;
+    margin-left:0px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+
+.login img {
+    width:35px;
+    margin-right:5px;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+    margin-bottom: 2px;`
 }
 
 .about_us {
@@ -108,21 +129,48 @@ nav:last-of-type {
 
     .headers a {
     font-size: 16pt;
-    margin-left: 110px;
+    margin-left: 105px;
     }
+
+    .login a{
+    color: #72B01D;
+    margin-left:0px;
+    }
+    .login img {
+    width:30px;
+    margin-right: 1px;
+    }
+}
 
 @media (max-width: 780px) {
     .headers a {
     font-size: 14pt;
-    margin-left: 76px;
+    margin-left: 63px;
+    }
+        .login a{
+    color: #72B01D;
+    margin-left:0px;
+    }
+    .login img {
+    width:26px;
+    margin-right: -3px;
     }
 }
 
 @media (max-width: 600px) {
 
     .headers a {
-    font-size: 12pt;
-    margin-left: 59px;
+    font-size: 11pt;
+    margin-left: 54px;
+    }
+        .login a{
+    color: #72B01D;
+    margin-left:0px;
+    }
+
+        .login img {
+    width:20px;
+    margin-right: -5px;
     }
 }
 
@@ -130,16 +178,24 @@ nav:last-of-type {
 
     .headers a {
     font-size: 10pt;
-    margin-left: 56px;
+    margin-left: 48px;
+    }
+        .login a{
+    color: #72B01D;
+    margin-left:0px;
     }
 
-
+}
 
 @media (max-width: 450px) {
 
         .headers a {
     font-size: 10pt;
-    margin-left: 44px;
+    margin-left: 35px;
+    }
+        .login a{
+    color: #72B01D;
+    margin-left:0px;
     }
 
 }
@@ -148,6 +204,10 @@ nav:last-of-type {
 
     .headers a {
     font-size: 8pt;
-    margin-left: 34px;
+    margin-left: 24px;
+    }
+        .login a{
+    color: #72B01D;
+    margin-left:0px;
     }
 }

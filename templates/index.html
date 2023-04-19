@@ -15,8 +15,11 @@
             <a href="/catalog" >Каталог</a>
             <a href="/info" >О нас</a>
         </nav>
-        <nav>
-            <a id="login" {% if user.is_active %} href="/profile">Профиль{% else %}  href="/userlogin"> Вход{% endif %}</a>
+        <nav class="login">
+            {% if user.is_active %}
+            <a href="/cart"><img src="../static/svg/cart.svg" alt=""></a>
+            {% endif %}
+            <a {% if user.is_active %} href="/profile">Профиль{% else %}  href="/userlogin"> Вход{% endif %}</a>
         </nav>
     </header>
     <img src="static/svg/Vector.svg" style="top: 80%; width: 100%;" class="nodrag" id="per">

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/cart.css">
+    <title>Профиль</title>
+</head>
+<body>
+
+    <header class="headers">
+        <nav>
+            <a href="/" >Главная</a>
+            <a href="/catalog" >Каталог</a>
+            <a href="/info" >О нас</a>
+        </nav>
+        <nav class="login">
+            {% if user.is_active %}
+            <a href="/cart"><img src="../static/svg/cart.svg" alt=""></a>
+            {% endif %}
+            <a {% if user.is_active %} href="/profile">Профиль{% else %}  href="/userlogin"> Вход{% endif %}</a>
+        </nav>
+    </header>
+
+    <div class="osn">
+        <div class="mains">
+            <div class="box1">
+                <div class="ven">
+                    <span class="x  " onclick="this.parentElement.style.display='none';">&times;</span>
+                    <img src="../static/products_img/футболка.png" alt="">
+                    <div class="settings">
+                        <h1>ФУТБОЛКА</h1>
+                        <h2>5000руб</h2>
+                        <div class="number">
+                            <button class="number-minus" type="button" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
+                            <input type="number" min="1" value="1" readonly>
+                            <button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box2">
+                <h1>Общая стоимость</h1>
+                <h2>5000р</h2>
+                 <div class="pays">
+                    <button id="adres">Адрес Доствки</button>
+                    <button id="config-pay">Способ оплаты</button>
+                    <button id="pay">Купить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+</html>

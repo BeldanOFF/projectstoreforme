@@ -164,7 +164,6 @@ def index():
     collections = Collections.query.order_by(Collections.title).all()
     catalog = Catalog.query.order_by(Catalog.title).all()
     items = Product.query.order_by(Product.price).all()
-    print(current_user)
     return render_template('index.html', collections=collections, catalog=catalog, user=current_user)
 
 
@@ -244,13 +243,10 @@ def userlogin():
 @login_required
 def profile():
     if request.method == 'POST':
-        print(current_user.email)
         user = User.query.filter_by(email=current_user.email).first()
         last_password = request.form['lastpassword']
         password = request.form['password']
         password_hash = generate_password_hash(password)
-        if not user or not user.password or not user.password.startswith('pbkdf2:sha256:'):
-            return "ЭЭЭЭЭЭЭ"
         if not (check_password_hash(user.password, last_password)):
             return render_template('profile.html', user=current_user, color="red", notification='Неверный пароль')
         elif last_password == password:
@@ -369,6 +365,9 @@ def catalog_tag(catalog_id):
     return render_template('catalog.html', product=product, collection=collection, collections=collections,
                            catalog_id=catalog_id, user=current_user)
 
+@app.route('/cart')
+def cart():
+    return render_template('cart.html', user=current_user)
 
 if __name__ == '__main__':
     app.run(debug=True)
